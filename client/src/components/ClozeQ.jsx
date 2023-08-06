@@ -7,22 +7,31 @@ import DroppableBlank from "./DroppableBlank"
 import DraggableOption from "./DraggableOption"
 import { addAnswer } from "../redux/slices/submissionSlice"
 
-const ClozeQ = ({ question, options }) => {
-  const dispatch = useDispatch()
+const ClozeQ = ({ question }) => {
+  const options = question.answers
   const [droppedOptions, setDroppedOptions] = useState({})
-  useEffect(() => {
-    const answers = [droppedOptions[0.5], droppedOptions[2.5]]
 
-    dispatch(addAnswer({ type: "cloze", qid: question._id, answers }))
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    // Extract the dropped options from the object
+    const answers = Object.values(droppedOptions)
+    dispatch(addAnswer({ questionType: "cloze", _id: question._id, answers }))
   }, [droppedOptions])
+
   const handleDrop = (option, blank) => {
-    setDroppedOptions({ ...droppedOptions, [blank]: option })
+    setDroppedOptions((prevOptions) => ({
+      ...prevOptions,
+      [blank]: option,
+    }))
   }
+
+  const qar = question.questionText.split(" ")
 
   return (
     <div>
       <div className="flex gap-1">
-        {question.text.split(" ").map((word, index) => {
+        {qar.map((word, index) => {
           if (word === "____") {
             const blankIndex = index / 2
             const droppedOption = droppedOptions[blankIndex] || null

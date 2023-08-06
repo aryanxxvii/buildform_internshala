@@ -1,13 +1,23 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { editAnswer, addAnswer } from "../redux/slices/submissionSlice"
-const Dropdown = ({ options, qid, index }) => {
+const Dropdown = ({ answers, qid, index }) => {
+  const options = answers
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
   const [selectedOption, setSelectedOption] = useState(null)
+  console.log("OPTIONS", options)
   const handleClick = (option) => {
     selectOption(option)
-    dispatch(addAnswer({ type: "categorize", qid, answers: [option], index }))
+
+    dispatch(
+      addAnswer({
+        questionType: "categorize",
+        _id: qid,
+        answers: [option],
+        index,
+      })
+    )
   }
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
@@ -35,7 +45,7 @@ const Dropdown = ({ options, qid, index }) => {
       </button>
       {isOpen && (
         <div className="absolute z-10 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
-          {options.map((option) => (
+          {options?.map((option) => (
             <button
               key={option}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"

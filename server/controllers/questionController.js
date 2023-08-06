@@ -1,28 +1,39 @@
 const Question = require("../models/Question")
 
 exports.getQuestions = async (req, res) => {
+  // try {
+  const questions = await Question.find()
+  res.status(200).json(questions)
+  // } catch (err) {
+  //   res.status(500).json({ error: "Error getting questions from the database" })
+  // }
+}
+exports.dropQuestions = async (req, res) => {
   try {
-    const questions = await Question.find()
-    res.json(questions)
+    // Drop the entire 'questions' collection
+    await Question.deleteMany({})
+    console.log("DELETED")
+    res.json({ message: "All collections dropped successfully." })
   } catch (err) {
-    res.status(500).json({ error: "Error getting questions from the database" })
+    res
+      .status(500)
+      .json({ message: "Error dropping collections.", error: err.message })
   }
 }
-
 exports.createQuestion = async (req, res) => {
-  try {
-    const { questionType, questionText, image, answers } = req.body
-    const newQuestion = new Question({
-      questionType,
-      questionText,
-      image,
-      answers,
-    })
-    const savedQuestion = await newQuestion.save()
-    res.status(201).json(savedQuestion)
-  } catch (err) {
-    res.status(400).json({ error: "Error creating question" })
-  }
+  const { type, text, image, answers, nanoID } = req.body
+
+  const newQuestion = new Question({
+    questionType: type,
+    questionText: text,
+    image,
+    nanoID,
+    answers,
+    active: true,
+  })
+
+  await newQuestion.save()
+  res.status(201).json(newQuestion)
 }
 
 exports.getFormQuestions = async (req, res) => {

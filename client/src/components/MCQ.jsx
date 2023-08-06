@@ -3,14 +3,16 @@ import { useDispatch } from "react-redux"
 import { addAnswer } from "../redux/slices/submissionSlice"
 
 const MCQ = ({ question }) => {
-  const options = question.options
+  const options = question.answers
+
   const [selectedOption, setSelectedOption] = useState(null)
   const dispatch = useDispatch()
 
   const handleOptionChange = (option) => {
     setSelectedOption(option)
-    console.log(option)
-    dispatch(addAnswer({ type: "mcq", qid: question._id, answers: [option] }))
+    dispatch(
+      addAnswer({ questionType: "mcq", _id: question._id, answers: [option] })
+    )
   }
 
   const handleSubmit = () => {
@@ -22,10 +24,10 @@ const MCQ = ({ question }) => {
 
   return (
     <div>
-      <h1>{question.text}</h1>
+      <h1>{question.questionText}</h1>
 
       <div className="mt-2">
-        {options.map((option, index) => (
+        {options?.map((option, index) => (
           <div className="flex" key={index}>
             <input
               type="radio"
