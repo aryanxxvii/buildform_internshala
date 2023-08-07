@@ -7,7 +7,7 @@ import { HTML5Backend } from "react-dnd-html5-backend"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 function App() {
   return (
-    <div className="App">
+    <div className="App ">
       <DndProvider backend={HTML5Backend}>
         <Router>
           <Routes>

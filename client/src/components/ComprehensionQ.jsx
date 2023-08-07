@@ -23,11 +23,17 @@ const ComprehensionQ = ({ question }) => {
   const mcqs = questions.filter((question) => question.questionType === "mcq")
 
   return (
-    <div className="w-64">
-      <h1>{question.questionText}</h1>
-      {mcqs?.map((mcq) => (
-        <MCQ question={mcq} />
-      ))}
+    <div className="w-1/2">
+      <div className="bg-purple-100 rounded-md p-2 text-purple-800 italic mb-3 gap-2 flex flex-col">
+        <img src={question.image} className="rounded-md w-full aspect-[10/4]" />
+        <h1 className="">{question.questionText}</h1>
+      </div>
+
+      <div className="ml-8">
+        {mcqs?.map((mcq) => (
+          <MCQ question={mcq} />
+        ))}
+      </div>
     </div>
   )
 }

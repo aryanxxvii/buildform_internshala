@@ -9,16 +9,17 @@ const CreateComprehension = () => {
   const [mcqComponents, setMCQComponents] = useState([])
   const [questionText, setQuestionText] = useState("")
   const [mcqQuestions, setMCQQuestions] = useState([])
+  const [image, setImage] = useState("")
 
   const handleSave = () => {
     const newQuestion = {
       questionType: "comprehension",
       questionText: questionText,
       nanoID: nanoID,
+      image: image,
     }
     dispatch(addQuestion(newQuestion))
     // map over it
-    console.log("AAAAAAAAA", mcqQuestions)
     mcqQuestions.forEach((mcqData) => {
       const newMCQQuestion = {
         questionType: "mcq",
@@ -37,30 +38,51 @@ const CreateComprehension = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
+      <input
+        type="text"
+        placeholder="Image Link"
+        value={image}
+        className="bg-gray-200 rounded-md border-none"
+        onChange={(event) => setImage(event.target.value)}
+      />
       <input
         type="text"
         placeholder="Question Text"
         value={questionText}
+        className="bg-gray-200 rounded-md border-none"
         onChange={(event) => setQuestionText(event.target.value)}
       />
+      <div className="">
+        {mcqQuestions.map((mcqData, index) => (
+          <CreateMCQ
+            key={index}
+            nanoID={nanoID}
+            onSaveMCQ={(data) => {
+              setMCQQuestions((prevQuestions) => {
+                const updatedQuestions = [...prevQuestions]
+                updatedQuestions[index] = data
+                return updatedQuestions
+              })
+            }}
+          />
+        ))}
+      </div>
 
-      {mcqQuestions.map((mcqData, index) => (
-        <CreateMCQ
-          key={index}
-          nanoID={nanoID}
-          onSaveMCQ={(data) => {
-            setMCQQuestions((prevQuestions) => {
-              const updatedQuestions = [...prevQuestions]
-              updatedQuestions[index] = data
-              return updatedQuestions
-            })
-          }}
-        />
-      ))}
-
-      <button onClick={handleAddQuestion}>Add MCQ Question</button>
-      <button onClick={handleSave}>Save</button>
+      <div className="text-center items-center flex flex-col gap-2">
+        <button
+          onClick={handleAddQuestion}
+          className="bg-green-200 text-green-800 rounded-md px-4 py-2 w-fit"
+        >
+          Add an MCQ
+        </button>
+        <button
+          className="bg-purple-200 text-purple-800 rounded-md px-4 py-2 w-fit"
+          onClick={handleSave}
+        >
+          Save
+        </button>
+      </div>
     </div>
   )
 }

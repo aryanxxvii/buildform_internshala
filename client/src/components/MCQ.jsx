@@ -26,12 +26,12 @@ const MCQ = ({ question }) => {
     <div>
       <h1>{question.questionText}</h1>
 
-      <div className="mt-2">
+      <div className="mt-1 ml-4">
         {options?.map((option, index) => (
-          <div className="flex" key={index}>
+          <div className="flex align-middle items-center ml-2" key={index}>
             <input
               type="radio"
-              className="form-radio text-blue-500"
+              className=" checked:bg-purple-500 focus:ring-purple-300 text-purple-500"
               value={option}
               checked={selectedOption === option}
               onChange={() => handleOptionChange(option)}

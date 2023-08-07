@@ -3,6 +3,7 @@ import CreateCloze from "./CreateCloze"
 import CreateComprehension from "./CreateComprehension"
 import CreateCategorize from "./CreateCategorize"
 import axios from "axios"
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline"
 import { useDispatch } from "react-redux"
 import { deleteQuestions } from "../redux/slices/creationSlice"
 const AddQ = () => {
@@ -32,23 +33,51 @@ const AddQ = () => {
         setShowComprehension(false)
         setShowCategorize(true)
         break
+      case "cancel":
+        setShowCloze(false)
+        setShowComprehension(false)
+        setShowCategorize(false)
+        break
       default:
         break
     }
   }
 
   return (
-    <div className="flex flex-col items-start">
-      <button onClick={() => handleAddQuestion("cloze")}>
-        Add Cloze Question
+    <div className="flex flex-col mb-8 items-center gap-6">
+      <div className="flex gap-8">
+        <button
+          onClick={() => handleAddQuestion("cloze")}
+          className="align-middle flex gap-1 rounded-md bg-yellow-100 px-4 py-2 text-yellow-700 font-bold"
+        >
+          <AddCircleOutlineIcon className="" /> Cloze Question
+        </button>
+        <button
+          onClick={() => handleAddQuestion("comprehension")}
+          className="align-middle flex gap-1 rounded-md bg-green-100 px-4 py-2 text-green-700 font-bold"
+        >
+          <AddCircleOutlineIcon className="" /> Comprehension Question
+        </button>
+        <button
+          onClick={() => handleAddQuestion("categorize")}
+          className="align-middle flex gap-1 rounded-md bg-blue-100 px-4 py-2 text-blue-700 font-bold"
+        >
+          <AddCircleOutlineIcon className="" /> Categorize Question
+        </button>
+        <button
+          onClick={() => handleAddQuestion("cancel")}
+          className="align-middle flex gap-1 rounded-md bg-gray-200 px-4 py-2 text-gray-700 font-bold"
+        >
+          Close
+        </button>
+      </div>
+
+      <button
+        onClick={() => handleDelete()}
+        className="align-middle flex gap-1 rounded-md bg-red-100 px-4 py-2 text-red-700 font-bold"
+      >
+        Remove All
       </button>
-      <button onClick={() => handleAddQuestion("comprehension")}>
-        Add Comprehension Question
-      </button>
-      <button onClick={() => handleAddQuestion("categorize")}>
-        Add Categorize Question
-      </button>
-      <button onClick={() => handleDelete()}>Remove All</button>
 
       {/* Render the corresponding question component based on the selected type */}
       {showCloze && <CreateCloze />}

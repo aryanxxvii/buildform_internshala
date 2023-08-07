@@ -16,7 +16,7 @@ const DroppableBlank = ({ blank, droppedOption, onDrop }) => {
   return (
     <div
       ref={drop}
-      className={`bg-gray-300 rounded-md font-bold px-2 ${
+      className={`bg-purple-100 rounded-md font-bold px-2 text-purple-800 ${
         isOver ? "hovered" : ""
       }`}
     >

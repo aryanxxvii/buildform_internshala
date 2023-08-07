@@ -58,11 +58,15 @@ const Dashboard = () => {
       })
   }
   return (
-    <div>
-      <h1>Form Dashboard</h1>
+    <div className="p-10">
+      <div className="text-center pb-8">
+        <h1 className="font-extrabold text-blue-700 text-4xl">
+          Form Dashboard
+        </h1>
+      </div>
 
       <AddQ />
-      <div>
+      <div className="flex flex-col gap-8">
         {questions.map((question, index) => {
           switch (question.questionType) {
             case "cloze":
@@ -72,6 +76,7 @@ const Dashboard = () => {
                   id={question._id}
                   text={question.questionText}
                   answers={question.answers}
+                  image={question.image}
                 />
               )
             case "comprehension":
@@ -81,6 +86,7 @@ const Dashboard = () => {
                   id={question._id}
                   nanoID={question.nanoID}
                   text={question.questionText}
+                  image={question.image}
                 />
               )
             case "categorize":
@@ -90,6 +96,7 @@ const Dashboard = () => {
                   id={question._id}
                   text={question.questionText}
                   answers={question.answers}
+                  image={question.image}
                 />
               )
             default:
@@ -97,7 +104,12 @@ const Dashboard = () => {
           }
         })}
       </div>
-      <button onClick={() => handleFormSubmit()}>Submit</button>
+      <button
+        onClick={() => handleFormSubmit()}
+        className="bg-purple-300 w-48 rounded-md font-bold text-purple-800 h-12 mt-10"
+      >
+        Submit
+      </button>
     </div>
   )
 }

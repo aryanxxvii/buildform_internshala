@@ -6,7 +6,7 @@ const Dropdown = ({ answers, qid, index }) => {
   const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
   const [selectedOption, setSelectedOption] = useState(null)
-  console.log("OPTIONS", options)
+
   const handleClick = (option) => {
     selectOption(option)
 

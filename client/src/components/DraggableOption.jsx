@@ -14,7 +14,7 @@ const DraggableOption = ({ option }) => {
   return (
     <div
       ref={drag}
-      className={`draggable-option bg-purple-600 text-white font-bold px-2 rounded-md ${
+      className={`draggable-option bg-purple-600  font-bold text-white px-2 rounded-md ${
         isDragging ? "dragging" : ""
       }`}
     >

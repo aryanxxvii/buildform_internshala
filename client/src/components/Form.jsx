@@ -28,14 +28,20 @@ const Form = () => {
 
   var questionCount = 1
   return (
-    <div>
+    <div className="flex flex-col mx-32 mt-10 gap-8 min-w-1/2 mb-10">
+      <h1 className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
+        Fillable Form
+      </h1>
       {questions.map((question, index) => (
-        <div key={index}>
-          {["comprehension", "cloze", "categorize"].includes(
-            question.questionType
-          ) ? (
-            <div className="font-bold">{questionCount}</div>
-          ) : null}
+        <div key={index} className="flex gap-4">
+          <div>
+            {["comprehension", "cloze", "categorize"].includes(
+              question.questionType
+            ) ? (
+              <div className="font-bold">{questionCount}</div>
+            ) : null}
+          </div>
+
           {question.questionType === "cloze" ? (
             <ClozeQ question={question} count={questionCount++} />
           ) : question.questionType === "categorize" ? (
@@ -45,7 +51,11 @@ const Form = () => {
           ) : null}
         </div>
       ))}
-      <button type="submit" onClick={handleSubmit} className="bg-purple-400">
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        className="bg-purple-500 w-48 rounded-md font-bold text-white h-12"
+      >
         Submit
       </button>
     </div>

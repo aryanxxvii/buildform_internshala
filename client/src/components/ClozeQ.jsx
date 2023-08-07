@@ -30,6 +30,9 @@ const ClozeQ = ({ question }) => {
 
   return (
     <div>
+      <div>
+        <img src={question.image} />
+      </div>
       <div className="flex gap-1">
         {qar.map((word, index) => {
           if (word === "____") {
@@ -50,7 +53,7 @@ const ClozeQ = ({ question }) => {
         })}
       </div>
 
-      <div className="options-container flex gap-4 mx-10">
+      <div className="options-container flex gap-4  my-4">
         {options.map((option, index) => (
           <DraggableOption key={index} option={option} />
         ))}

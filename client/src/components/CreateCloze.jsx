@@ -5,6 +5,7 @@ import { addQuestion } from "../redux/slices/creationSlice"
 const CreateCloze = () => {
   const dispatch = useDispatch()
   const [questionText, setQuestionText] = useState("")
+  const [image, setImage] = useState("")
   const [options, setOptions] = useState("")
 
   const handleQuestionTextChange = (e) => {
@@ -13,6 +14,9 @@ const CreateCloze = () => {
 
   const handleOptionsChange = (e) => {
     setOptions(e.target.value)
+  }
+  const handleImageChange = (e) => {
+    setImage(e.target.value)
   }
 
   const handleAddQuestion = () => {
@@ -24,6 +28,7 @@ const CreateCloze = () => {
       questionType: "cloze", // Replace with the actual question type.
       questionText: questionText,
       answers: parsedOptions,
+      image: image,
     }
 
     // Dispatch the addQuestion action with the new question object as the payload.
@@ -31,20 +36,36 @@ const CreateCloze = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <input
         type="text"
-        placeholder="Question Text"
+        placeholder="Image Link"
+        value={image}
+        className="bg-gray-200 rounded-md border-none"
+        onChange={handleImageChange}
+      ></input>
+      <input
+        type="text"
+        placeholder="Question with 4 underscores"
         value={questionText}
+        className="bg-gray-200 rounded-md border-none"
         onChange={handleQuestionTextChange}
       />
       <input
         type="text"
         placeholder="Comma Sep. Options"
         value={options}
+        className="bg-gray-200 rounded-md border-none"
         onChange={handleOptionsChange}
       />
-      <button onClick={handleAddQuestion}>ADD IT</button>
+      <div className="text-center">
+        <button
+          onClick={handleAddQuestion}
+          className="bg-purple-200 text-purple-800 rounded-md px-4 py-2 w-fit"
+        >
+          Save
+        </button>
+      </div>
     </div>
   )
 }

@@ -27,23 +27,32 @@ const CreateMCQ = ({ onSaveMCQ, nanoID }) => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <input
         type="text"
         placeholder="MCQ Question Text"
         value={questionText}
+        className="bg-gray-200 rounded-md border-none mt-10"
         onChange={handleQuestionTextChange}
       />
       {options.map((option, index) => (
         <input
           key={index}
           type="text"
+          className="bg-gray-200 rounded-md border-none"
           placeholder={`Option ${index + 1}`}
           value={option}
           onChange={(e) => handleOptionChange(index, e)}
         />
       ))}
-      <button onClick={handleSave}>Save MCQ</button>
+      <div className="text-center">
+        <button
+          onClick={handleSave}
+          className="bg-green-200 text-green-800 rounded-md px-4 py-2 w-fit"
+        >
+          Save this MCQ
+        </button>
+      </div>
     </div>
   )
 }
