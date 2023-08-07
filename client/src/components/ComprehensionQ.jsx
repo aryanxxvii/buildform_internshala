@@ -9,7 +9,7 @@ const ComprehensionQ = ({ question }) => {
   useEffect(() => {
     // Fetch all questions from the backend when the component mounts
     axios
-      .get("http://localhost:8080/api/get-questions") // Replace with your backend API endpoint for getting questions
+      .get("https://buildform.onrender.com/api/get-questions") // Replace with your backend API endpoint for getting questions
       .then((response) => {
         // Update the 'questions' state with the retrieved questions
         setQuestions(response.data)
@@ -25,7 +25,12 @@ const ComprehensionQ = ({ question }) => {
   return (
     <div className="w-full md:w-1/2 bg-purple-100 rounded-md p-2 text-purple-800 mb-3 gap-2 flex flex-col">
       <div className="">
-        <img src={question.image} className="rounded-md w-full aspect-[10/4]" />
+        {question.image ? (
+          <img
+            src={question.image}
+            className="rounded-md w-full aspect-[10/4]"
+          />
+        ) : null}
         <h1 className="bg-purple-100 rounded-md p-2 text-purple-800 italic font-bold mb-3 gap-2 flex flex-col">
           {question.questionText}
         </h1>

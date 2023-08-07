@@ -6,7 +6,9 @@ import { useSelector } from "react-redux"
 const CategorizeQ = ({ question }) => {
   return (
     <div className="w-full md:w-1/2 bg-purple-100 rounded-md p-2 text-purple-800 mb-3 gap-2 flex flex-col">
-      <img src={question.image} className="rounded-md w-full aspect-[10/4]" />
+      {question.image ? (
+        <img src={question.image} className="rounded-md w-full aspect-[10/4]" />
+      ) : null}
       <h1>{question.questionText}</h1>
       <div className="flex flex-col gap-2 mt-2">
         {question.answers[0].map((answers, index) => (

@@ -13,7 +13,7 @@ const Form = () => {
   useEffect(() => {
     // Fetch all questions from the backend when the component mounts
     axios
-      .get("http://localhost:8080/api/get-questions") // Replace with your backend API endpoint for getting questions
+      .get("https://buildform.onrender.com/api/get-questions") // Replace with your backend API endpoint for getting questions
       .then((response) => {
         // Update the 'questions' state with the retrieved questions
         setQuestions(response.data)

@@ -31,7 +31,12 @@ const ClozeQ = ({ question }) => {
   return (
     <div className="w-full md:w-1/2 bg-purple-100 rounded-md p-2 text-purple-800  mb-3 gap-2 flex flex-col">
       <div>
-        <img src={question.image} className="rounded-md w-full aspect-[10/4]" />
+        {question.image ? (
+          <img
+            src={question.image}
+            className="rounded-md w-full aspect-[10/4]"
+          />
+        ) : null}
       </div>
       <div className="flex gap-1">
         {qar.map((word, index) => {

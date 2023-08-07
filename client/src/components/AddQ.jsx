@@ -12,9 +12,11 @@ const AddQ = () => {
   const [showCategorize, setShowCategorize] = useState(false)
   const dispatch = useDispatch()
   const handleDelete = () => {
-    axios.delete("http://localhost:8080/api/drop-questions").then(() => {
-      dispatch(deleteQuestions())
-    })
+    axios
+      .delete("https://buildform.onrender.com/api/drop-questions")
+      .then(() => {
+        dispatch(deleteQuestions())
+      })
   }
   const handleAddQuestion = (type) => {
     switch (type) {

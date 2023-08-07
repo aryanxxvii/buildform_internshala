@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/get-questions")
+      .get("https://buildform.onrender.com/api/get-questions")
       .then((response) => {
         const preQuestions = response.data
         preQuestions.forEach((question) => dispatch(addQuestion(question)))
@@ -32,7 +32,7 @@ const Dashboard = () => {
     console.log("CLICKED")
 
     axios
-      .delete("http://localhost:8080/api/drop-questions")
+      .delete("https://buildform.onrender.com/api/drop-questions")
       .then(() => {
         // Once the collections are dropped, start adding new questions
         questions.forEach((question) => {
@@ -44,7 +44,7 @@ const Dashboard = () => {
             answers: question.answers,
           }
           axios
-            .post("http://localhost:8080/api/questions", q)
+            .post("https://buildform.onrender.com/api/questions", q)
             .then((response) => {
               // Handle the response from the server if needed
               console.log("Question posted:", response.data)
