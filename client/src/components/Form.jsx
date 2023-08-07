@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react"
 import ClozeQ from "./ClozeQ"
 import ComprehensionQ from "./ComprehensionQ"
+import { toast, ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import CategorizeQ from "./CategorizeQ"
 import { useSelector } from "react-redux"
 import axios from "axios"
+import { Link } from "react-router-dom"
 const Form = () => {
   const [questions, setQuestions] = useState([])
 
@@ -23,15 +26,28 @@ const Form = () => {
   const submissions = useSelector((state) => state.submission)
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("SUBMISSIONS", submissions)
+    toast("Form submitted successfully!")
   }
 
   var questionCount = 1
   return (
-    <div className="flex flex-col mx-32 mt-10 gap-8 min-w-1/2 mb-10">
+    <div className="flex flex-col mx-8 md:mx-32 mt-10 gap-8 min-w-1/2 mb-10">
       <h1 className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
         Fillable Form
       </h1>
+      <div className="flex gap-4">
+        <Link to="/">
+          <button className="align-middle flex gap-1 rounded-md bg-green-100 px-4 py-2 text-green-700 font-bold">
+            Home
+          </button>
+        </Link>
+        <Link to="/form/edit">
+          <button className="align-middle flex gap-1 rounded-md bg-blue-100 px-4 py-2 text-blue-700 font-bold">
+            Edit
+          </button>
+        </Link>
+      </div>
+
       {questions.map((question, index) => (
         <div key={index} className="flex gap-4">
           <div>

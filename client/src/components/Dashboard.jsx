@@ -9,6 +9,8 @@ import ShowCategorize from "./ShowCategorize"
 import ShowComprehension from "./ShowComprehension"
 import axios from "axios"
 import { addQuestion } from "../redux/slices/creationSlice"
+import { Link } from "react-router-dom"
+import { toast } from "react-toastify"
 const Dashboard = () => {
   const dispatch = useDispatch()
 
@@ -52,17 +54,33 @@ const Dashboard = () => {
               console.error("Error posting question:", error)
             })
         })
+
+        toast("Form edited successfully!")
       })
       .catch((error) => {
         console.error("Error dropping collections:", error)
       })
   }
   return (
-    <div className="p-10">
+    <div className="p-4 md:p-10">
       <div className="text-center pb-8">
-        <h1 className="font-extrabold text-blue-700 text-4xl">
-          Form Dashboard
-        </h1>
+        <div className="flex  gap-4 text-center items-center justify-center">
+          <h1 className="font-extrabold text-blue-700 text-4xl">
+            Form Dashboard
+          </h1>
+          <div className="flex  gap-2">
+            <Link to="/">
+              <button className="align-middle flex gap-1 rounded-md bg-green-100 px-4 py-2 text-green-700 font-bold">
+                Home
+              </button>
+            </Link>
+            <Link to="/form/view">
+              <button className="align-middle flex gap-1 rounded-md bg-blue-100 px-4 py-2 text-blue-700 font-bold">
+                View
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
 
       <AddQ />

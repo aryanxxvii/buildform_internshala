@@ -31,7 +31,7 @@ const Dropdown = ({ answers, qid, index }) => {
   return (
     <div className="relative">
       <button
-        className="bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
+        className="bg-purple-200 text-purple-700 font-semibold py-2 px-4 rounded inline-flex items-center"
         onClick={toggleDropdown}
       >
         {selectedOption ? selectedOption : "Select an option"}
@@ -48,7 +48,7 @@ const Dropdown = ({ answers, qid, index }) => {
           {options?.map((option) => (
             <button
               key={option}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+              className="block px-4 py-2 text-sm text-purple-700 hover:bg-purple-100 w-full text-left"
               onClick={() => handleClick(option)}
             >
               {option}

@@ -29,9 +29,9 @@ const ClozeQ = ({ question }) => {
   const qar = question.questionText.split(" ")
 
   return (
-    <div>
+    <div className="w-full md:w-1/2 bg-purple-100 rounded-md p-2 text-purple-800  mb-3 gap-2 flex flex-col">
       <div>
-        <img src={question.image} />
+        <img src={question.image} className="rounded-md w-full aspect-[10/4]" />
       </div>
       <div className="flex gap-1">
         {qar.map((word, index) => {

@@ -23,10 +23,12 @@ const ComprehensionQ = ({ question }) => {
   const mcqs = questions.filter((question) => question.questionType === "mcq")
 
   return (
-    <div className="w-1/2">
-      <div className="bg-purple-100 rounded-md p-2 text-purple-800 italic mb-3 gap-2 flex flex-col">
+    <div className="w-full md:w-1/2 bg-purple-100 rounded-md p-2 text-purple-800 mb-3 gap-2 flex flex-col">
+      <div className="">
         <img src={question.image} className="rounded-md w-full aspect-[10/4]" />
-        <h1 className="">{question.questionText}</h1>
+        <h1 className="bg-purple-100 rounded-md p-2 text-purple-800 italic font-bold mb-3 gap-2 flex flex-col">
+          {question.questionText}
+        </h1>
       </div>
 
       <div className="ml-8">

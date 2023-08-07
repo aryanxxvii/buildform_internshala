@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGO_URL, {
 const db = mongoose.connection
 
 const app = express()
-const port = 8080
+const port = process.env.PORT || 8080
 app.use(cors())
 // Parse JSON data in the request body
 app.use(express.json())

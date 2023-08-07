@@ -45,7 +45,7 @@ const AddQ = () => {
 
   return (
     <div className="flex flex-col mb-8 items-center gap-6">
-      <div className="flex gap-8">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-8 text-center align-middle items-center">
         <button
           onClick={() => handleAddQuestion("cloze")}
           className="align-middle flex gap-1 rounded-md bg-yellow-100 px-4 py-2 text-yellow-700 font-bold"
@@ -64,9 +64,10 @@ const AddQ = () => {
         >
           <AddCircleOutlineIcon className="" /> Categorize Question
         </button>
+
         <button
           onClick={() => handleAddQuestion("cancel")}
-          className="align-middle flex gap-1 rounded-md bg-gray-200 px-4 py-2 text-gray-700 font-bold"
+          className="align-middle flex gap-1 rounded-md bg-gray-200 px-4 py-2 text-gray-700 font-bold "
         >
           Close
         </button>
