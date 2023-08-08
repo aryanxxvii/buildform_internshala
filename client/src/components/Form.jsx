@@ -16,6 +16,7 @@ const Form = () => {
       .get("https://buildform.onrender.com/api/get-questions") // Replace with your backend API endpoint for getting questions
       .then((response) => {
         // Update the 'questions' state with the retrieved questions
+
         setQuestions(response.data)
       })
       .catch((error) => {
@@ -31,21 +32,23 @@ const Form = () => {
 
   var questionCount = 1
   return (
-    <div className="flex flex-col mx-8 md:mx-32 mt-10 gap-8 min-w-1/2 mb-10">
-      <h1 className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
-        Fillable Form
-      </h1>
-      <div className="flex gap-4">
-        <Link to="/">
-          <button className="align-middle flex gap-1 rounded-md bg-green-100 px-4 py-2 text-green-700 font-bold">
-            Home
-          </button>
-        </Link>
-        <Link to="/form/edit">
-          <button className="align-middle flex gap-1 rounded-md bg-blue-100 px-4 py-2 text-blue-700 font-bold">
-            Edit
-          </button>
-        </Link>
+    <div className="flex flex-col mx-8 md:mx-32 mt-10 min-w-1/2 mb-10">
+      <div className="flex gap-4 md:gap-8 mb-8 flex-col md:flex-row">
+        <h1 className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
+          Fillable Form
+        </h1>
+        <div className="flex gap-4">
+          <Link to="/">
+            <button className="align-middle flex gap-1 rounded-md bg-green-100 px-4 py-2 text-green-700 font-bold">
+              Home
+            </button>
+          </Link>
+          <Link to="/form/edit">
+            <button className="align-middle flex gap-1 rounded-md bg-blue-100 px-4 py-2 text-blue-700 font-bold">
+              Edit
+            </button>
+          </Link>
+        </div>
       </div>
 
       {questions.map((question, index) => (

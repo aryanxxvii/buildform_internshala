@@ -29,7 +29,7 @@ const ClozeQ = ({ question }) => {
   const qar = question.questionText.split(" ")
 
   return (
-    <div className="w-full md:w-1/2 bg-purple-100 rounded-md p-2 text-purple-800  mb-3 gap-2 flex flex-col">
+    <div className="w-full md:w-1/2 bg-purple-100 rounded-md p-2 text-purple-800  mb-8 gap-2 flex flex-col">
       <div>
         {question.image ? (
           <img
@@ -58,7 +58,7 @@ const ClozeQ = ({ question }) => {
         })}
       </div>
 
-      <div className="options-container flex gap-4  my-4">
+      <div className="options-container flex gap-4  my-4 flex-wrap">
         {options.map((option, index) => (
           <DraggableOption key={index} option={option} />
         ))}

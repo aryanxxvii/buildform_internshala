@@ -11,8 +11,8 @@ import { createSlice } from "@reduxjs/toolkit"
 // Categorize: ["3", "categorize", "Choose between State and Country", [["Italy", "Delhi"], ["Country", "State"]]]
 // Comprehension: ["5", "comprehension", "Fear is the mind killer."]
 
-const submissionSlice = createSlice({
-  name: "Submissions",
+const creationSlice = createSlice({
+  name: "Creations",
   initialState: [],
   reducers: {
     addQuestion: (state, action) => {
@@ -30,14 +30,16 @@ const submissionSlice = createSlice({
         return [...state, action.payload]
       }
     },
-    deleteQuestions: (state, action) => {
-      state = []
+    deleteQuestions: () => [],
+
+    deleteQuestion: (state, action) => {
+      return state.filter((question) => question._id !== action.payload._id)
     },
     editQuestion: (state, action) => {},
   },
 })
 
-export const { addQuestion, editQuestion, deleteQuestions } =
-  submissionSlice.actions
+export const { addQuestion, editQuestion, deleteQuestions, deleteQuestion } =
+  creationSlice.actions
 
-export default submissionSlice.reducer
+export default creationSlice.reducer

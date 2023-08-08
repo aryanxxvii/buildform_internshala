@@ -8,17 +8,19 @@ import ShowCloze from "./ShowCloze"
 import ShowCategorize from "./ShowCategorize"
 import ShowComprehension from "./ShowComprehension"
 import axios from "axios"
-import { addQuestion } from "../redux/slices/creationSlice"
+import { addQuestion, deleteQuestions } from "../redux/slices/creationSlice"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 const Dashboard = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(deleteQuestions())
     axios
       .get("https://buildform.onrender.com/api/get-questions")
       .then((response) => {
         const preQuestions = response.data
+
         preQuestions.forEach((question) => dispatch(addQuestion(question)))
       })
       .catch((error) => {
@@ -29,8 +31,6 @@ const Dashboard = () => {
   const questions = useSelector((state) => state.creation)
 
   const handleFormSubmit = () => {
-    console.log("CLICKED")
-
     axios
       .delete("https://buildform.onrender.com/api/drop-questions")
       .then(() => {
